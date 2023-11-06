@@ -1,0 +1,98 @@
+{%extends 'main.html'%} {%load static%}{%block estilo%}
+<link rel="stylesheet" type="text/css" href="{% static 'selling.css' %}" />
+
+{%endblock estilo%} {%block content%}
+<div class="selling-box">
+  <h2>House details</h2>
+  <form
+    class="selling-form"
+    method="POST"
+    action="{% url 'selling_page' %}"
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %}
+    <div class="my-row">
+      <div class="selling-item">
+        <label for="test">Type the address:</label>
+        <div
+          class="autocomplete-container form-control"
+          id="autocomplete-container"
+        ></div>
+      </div>
+      <div class="selling-item">
+        <label for="title">Title</label>
+        {{ house_form.title}} {{ house_form.address}} {{ house_form.latitude}}
+        {{ house_form.longitude}}
+        <input type="hidden" name="city" id="hidden-input-city" />
+      </div>
+    </div>
+
+    <div class="my-row">
+      <div class="selling-item">
+        <label for="price">Price</label>
+        {{ house_form.price}}
+      </div>
+
+      <div class="selling-item">
+        <label for="rooms">Rooms</label>
+        {{ house_form.rooms}}
+      </div>
+    </div>
+
+    <div class="my-row">
+      <div class="selling-item">
+        <label for="m2">M<sup>2</sup> </label>
+        {{house_form.m2}}
+      </div>
+
+      <div class="selling-item">
+        <label for="type">Type</label>
+        {{house_form.type}}
+      </div>
+
+      <div class="selling-item">
+        <label for="bathrooms">Bathrooms</label>
+        {{house_form.bathrooms }}
+      </div>
+    </div>
+
+    <div class="my-row">
+      <div class="selling-item">
+        <label for="rent_or_sell">Availability</label>
+        {{house_form.rent_or_sell }}
+      </div>
+
+      <div class="selling-item">
+        <label for="garage">Garage</label>
+        {{house_form.garage}}
+      </div>
+
+      <div class="selling-item">
+        <label for="image">Upload your image</label>
+        <input
+          id="image"
+          class="form-control"
+          accept="image/png, image/jpeg, image/jpg"
+          multiple
+          name="image"
+          type="file"
+        />
+      </div>
+    </div>
+
+    <div class="description-row">
+      <label for="description">Description</label>
+      {{house_form.description}}
+    </div>
+    <button class="sell-house-button" id="send-button" type="submit">
+      Save changes
+    </button>
+  </form>
+</div>
+
+<script
+  type="text/javascript"
+  src="{% static 'autocomplete_selling.js' %}"
+></script>
+
+{%endblock content%}

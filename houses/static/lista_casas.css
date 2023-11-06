@@ -1,0 +1,402 @@
+.contenedor{
+    width:90vw;
+    max-width: 800px;
+    margin:auto;
+}
+
+.box{
+    display: flex;
+    flex-direction:column;
+    width: 100%;
+    background-color: var(--vanilla-soft);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    margin: 20px auto;
+
+}
+
+.box-foto{
+    width: 100%;
+    max-height: 330px;
+}
+
+.box-foto img{
+    height: 100%;
+    width: 100%;
+    object-fit:cover;
+    border-radius: 2px 2px 0px 0px;
+} 
+
+.house-features{
+    padding:10px;
+    height: 60%;
+    width: 100%;
+    text-align: center;
+    display:flex;
+    justify-self: stretch;
+    flex-direction:column;
+    justify-content: space-between;
+}
+
+.house-features h3{
+    font-size: 30px;
+    margin: 0px;
+}
+
+.house-features h5 {
+    margin-top: 0px;
+    margin-bottom:15px;
+    font-size: 18px;
+}
+
+.first-row, .second-row, .third-row{
+    display:flex;
+    
+}
+
+.row-item{
+    width: 50%;
+    margin: 0.6em
+}
+
+.titulo{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 0px
+}
+
+.box-btns{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top:10px;
+    gap:10px
+}
+
+.fav-button, .set-price-button, .remove-fav-button, .edit-button{
+    width: 100%;
+    height: 40px;
+}
+
+.edit-button{
+    background-color: var(--prussian-blue);
+    color: white;
+    border: 2px solid var(--prussian-blue);
+}
+
+.edit-button:hover{
+    color: var(--prussian-blue);
+    background-color: white;
+}
+
+.fav-button{
+    background-color: var(--xanthous);
+    border: 2px solid var(--xanthous);
+}
+
+.fav-button:hover {
+    background-color: white;
+    color: var(--xanthous);
+}
+
+.set-price-button {
+    background-color:var(--prussian-blue);
+    color: white;
+    border: 2px solid var(--prussian-blue);
+}
+
+.set-price-button:hover {
+    background-color: white;
+    color: var(--prussian-blue);
+    border: 2px solid var(--prussian-blue);
+}
+
+.remove-fav-button{
+    background-color: var(--fire-engine-red);
+    border: 2px solid var(--fire-engine-red);
+}
+
+.remove-fav-button:hover {
+    color: var(--fire-engine-red);
+    background-color: white;
+}
+
+.filter-btn{
+    border: 2px solid var(--prussian-blue);
+    background-color: var(--prussian-blue);
+    color: white;
+    transition:0.5s;
+}
+
+.filter-btn:hover{
+    transition:0.5s;
+    background-color:white;
+    color:var(--prussian-blue);
+}
+
+.filter-modal {
+    position: absolute;
+    top:110px;
+    left:-100%;
+    padding:20px 10px 10px;
+    width: 270px;
+    border-radius:5px;
+    margin:auto;
+    background-color: #FAF9F6;
+    z-index:300;
+    transition:1s ease;
+}
+
+.filter-row, .filter-third-row{
+    width: 100%;
+    margin-bottom:10px;
+    display: flex;
+}
+
+.filter-row{
+    gap:10px
+}
+
+.filter-row input, select{
+    width: 100%;
+    height: 30px;
+    margin-top:3px;
+}
+
+.modal-active {
+    top: 120px;
+    left: 0px;
+    transition: 1s ease
+}
+
+.filter-form{
+    width: 100%;
+}
+
+.close-filter-button{
+    position:absolute;
+    top:5px;
+    border-radius: 3px;
+    padding: 5px;
+    height: 30px;
+    width: 30px;
+    right:10px;
+}
+
+.close-filter-button i{
+    display:block;
+}
+
+.filter-btns{
+    width: 100%;
+    display: flex;
+    gap:10px;
+}
+.filter-btns button{
+    width: 50%;
+}
+
+.clear-filters-button{
+    background-color: var(--fire-engine-red);
+}
+
+.clear-filters-button:hover {
+    background-color: white;
+    color: var(--fire-engine-red);
+    border:1px solid var(--fire-engine-red);
+}
+
+
+.my-pagination{
+    width: 200px;
+    margin:auto;
+    display: flex;
+    justify-content: center;
+}
+
+.no-favs-btn{
+    background-color:var(--prussian-blue);
+    padding:8px 16px;
+    border-radius:2px;
+    margin-top:20px;
+    color:white;
+    border: 2px solid var(--prussian-blue);
+}
+
+.no-favs-btn:hover{
+    color: var(--prussian-blue);
+    background-color: white;
+    border:2px solid var(--prussian-blue)
+}
+
+.see-details-btn{
+    height: 40px;
+    border-radius: 3px;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--prussian-blue);
+    border: 2px solid var(--prussian-blue);
+    width: 100%;
+    transition:0.5s
+}
+
+.see-details-btn:hover{
+    background-color: white;
+    color:var(--prussian-blue);
+    transition: 0.5s
+}
+
+.add-property-button {
+    padding: 6px 12px;
+    background-color: var(--prussian-blue);
+    border: 2px solid var(--prussian-blue);
+}
+
+.add-property-button:hover{
+    background-color: white;
+    color: var(--prussian-blue);
+    border: 2px solid var(--prussian-blue);
+}
+
+.modal-price-button{
+    background-color: var(--light-blue);
+    border: 2px solid var(--light-blue);
+    color:white;
+    transition:0.5s;
+}
+
+.modal-price-button:hover{
+    background-color: white;
+    color: var(--light-blue);
+    transition:0.5s;
+}
+ 
+@media screen and (max-width:420px){
+    .favourites-title{
+        font-size: 28px;
+        text-align:center;
+    }
+
+    
+}
+
+
+@media screen and (min-width:600px) and (max-width:700px){
+    /* .box{
+        height: 600px;
+    } */
+    
+    .house-features{
+        height: 60%;
+        text-align: left;
+    }
+
+    
+
+}
+
+@media screen and (min-width:600px){
+    .box{
+        flex-direction:row;
+        
+    }
+
+    .box-foto {
+        width: 50%;
+        max-height: 100%;
+    }
+
+    .box-foto img{
+        border-radius: 2px 0px 0px 2px;
+    }
+
+    .house-features {
+        padding: 10px;
+        text-align: left;
+        width: 50%;
+    }
+}
+
+
+.nuevo-filtro{
+    width: 100%;
+    height: 0px;
+    background-color: var(--prussian-blue);
+    color: var(--vanilla);
+    border-radius: 2px;
+    overflow: hidden;
+    transition:0.5s;
+    position: relative;
+    padding: 0px 10px;
+}
+
+.activo{
+    height: 140px;
+    transition:0.5s;
+    padding: 10px 10px;
+}
+
+.cerrar-filtro{
+    position: absolute;
+    top:5px;
+    background-color: transparent;
+    right:10px;
+}
+
+.filter-input{
+    display: flex;
+    flex-direction: column;
+}
+
+.radio{
+    flex-direction: row;
+    gap: 10px;
+    align-self: flex-start;
+}
+
+.filter-btns-row{
+    display: flex;
+    gap: 20px;
+}
+
+.apply-filter-btn{
+    background-color: var(--vanilla);
+    color: var(--prussian-blue);
+    border:2px solid var(--vanilla)
+}
+
+.apply-filter-btn:hover {
+    background-color: var(--prussian-blue);
+    color: var(--vanilla);
+}
+
+.inputs-row{
+    display: flex;
+    margin-bottom:20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.clear-btn{
+    background-color: var(--fire-engine-red);
+    color:white;
+    border: 2px solid var(--fire-engine-red);
+    transition: 0.5s;
+}
+
+.clear-btn:hover{
+    background-color: transparent;
+    color:var(--fire-engine-red);
+    transition:0.5s
+}
+
+.buttons-form{
+    margin:0px;
+}

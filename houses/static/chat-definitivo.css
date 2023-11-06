@@ -1,0 +1,377 @@
+h2{
+    margin: 0px
+}
+
+p{
+    margin-bottom: 0px;
+}
+
+.chat-container {
+    display: flex;
+    min-height: calc(100vh - 80px);
+}
+
+.messages-screen {
+    width: 100%;
+    max-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0px;
+    background-color: white;
+}
+
+.conversations-bar {
+    width: 50%;
+    position:absolute;
+    top:70px;
+    left: -100%;
+    transition:1s ease;
+    z-index: 5;
+}
+
+.first-line{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.conversation {
+    background-color: var(--vanilla);
+    color: var(--prussian-blue);
+    padding: 12px 10px 12px 24px;
+    position:relative;
+}
+
+.conversation-center{
+    color: var(--prussian-blue);
+}
+
+.selected {
+    background-color: var(--prussian-blue);
+    color: var(--vanilla);
+}
+
+.conversations-bar-active{
+    left:0px;
+    transition:1s ease;
+}
+
+.close-conversations-bar{
+    /* position:absolute;
+    top: 5px;
+    left:-100%; */
+    width: 20px;
+    background-color:transparent
+}
+
+.close-conversations-bar i{
+    width: 16px;
+    height: 16px;
+    color:var(--fire-engine-red);
+}
+
+/* .close-conversations-bar-active {
+    
+    top: 5px;
+    left: 100%;
+} */
+
+.message-btns{
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1em;
+    gap:10px;
+    padding-top:0px;
+    margin-bottom: 10px;
+    border-bottom:1px solid steelblue
+}
+
+
+ .message-sent,
+ .message-received {
+     border-radius: 20px;
+     padding: 1em;
+     width: auto;
+     max-width: 60%;
+     margin-bottom: 1em;
+     display: inline-block;
+     color: white;
+ }
+
+ .message-received {
+     border-bottom-left-radius: 0px;
+     margin-left: 1em;
+     margin-right: auto;
+     background-color: var(--prussian-blue);
+     /* background-color: #336683; */
+ }
+
+ .message-sent {
+     border-bottom-right-radius: 0px;
+     margin-right: 1em;
+     margin-left: auto;
+     background-color: var(--light-blue);
+ }
+
+ .message-text {
+     margin: 0px;
+ }
+
+ form{
+    margin:0px;
+ }
+
+
+ .send-message-box{
+    position:fixed;
+    bottom:-100%;
+    left:auto;
+    right:0px;
+    width: 100%;
+    padding: 10px;
+    transition: 1s ease;
+    background-color: white;
+
+ }
+
+ .send-message-box textarea{
+    width: 100%;
+    height: 150px;
+    margin-bottom: 10px;
+    font-family: inherit;
+    outline:none;
+ }
+
+ .message-box-active{
+    bottom:0px;
+    transition:1s ease;
+ }
+
+ .send-modal-buttons{
+    display: flex;
+    gap:10px;
+    justify-content: space-evenly;
+ }
+
+ .cancel-button{
+    background-color: var(--fire-engine-red);
+    border: 2px solid var(--fire-engine-red);
+    transition:0.5s
+ }
+
+ .cancel-button:hover {
+     background-color: white;
+     color: var(--fire-engine-red);
+     transition: 0.5s
+ }
+
+ .send-message-button, .cancel-button{
+    width: 50%;
+ }
+
+ .send-message-button{
+    color: white;
+    background-color: var(--prussian-blue);
+    border:2px solid var(--prussian-blue);
+    transition:0.5s
+ }
+
+
+ #open-message-box:hover, .send-message-button:hover, #open-conversations-button:hover{
+    background-color: white;
+    color:var(--prussian-blue);
+    transition:0.5s;
+ }
+
+ .delete-conversation-button-small{
+    background-color: var(--fire-engine-red);
+    position:absolute;
+    z-index:10;
+    bottom:5px;
+    right: 5px;
+ }
+
+ .delete-conversation-button-small:hover{
+    color:var(--fire-engine-red);
+    border:2px solid var(--fire-engine-red);
+ }
+
+ .delete-conversation-button{
+    display: none;
+ }
+
+ .conversation-center {
+     display: none;
+ }
+
+ .conversation-above{
+    margin:2px 20px 10px;
+    text-align: center;
+ }
+
+ #open-conversations-button, #open-message-box{
+    width: 50%;
+    background-color: var(--prussian-blue);
+    border: 2px solid var(--prussian-blue);
+    padding:6px 12px
+ }
+
+ .delete-conversation-button {
+     background-color: var(--fire-engine-red);
+     border: 2px solid var(--fire-engine-red);
+ }
+
+ .delete-conversation-button:hover {
+     color: var(--fire-engine-red);
+     background-color: white;
+     border: 2px solid var(--fire-engine-red);
+ }
+
+
+@media screen and (max-width:500px){
+    .conversations-bar {
+        width: 70%;
+    }
+
+    
+}
+
+@media screen and (min-width:650px) {
+    .conversation-center {
+        display: block;
+    }
+
+    .conversation-above{
+        display:none;
+    }
+
+    #open-conversations-button,
+    #open-message-box {
+        width: auto;
+    }
+
+    
+}
+
+ 
+
+@media screen and (max-width:600px){
+    .conversation h2{
+        font-size: 22px
+    }
+
+    .delete-conversation-button {
+        position: static
+    }
+
+    
+
+   
+
+}
+
+
+
+@media screen and (min-width:800px){
+
+    .chat-container {
+        display: flex;
+        min-height: calc(100vh - 80px);
+        justify-content: space-between;
+    }
+    
+    .conversations-bar {
+        width: 30%;
+        position:static;
+        inset:auto;
+    }
+
+    .messages-screen {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        background-color: white;
+    }
+
+    #open-conversations-button{
+        display:none
+    }
+
+    .close-conversations-bar{
+        display:none;
+    }
+
+    .send-message-box {
+        width: 70%;
+        margin-left:auto;
+    }
+
+    .send-modal-buttons {
+        justify-content: flex-start;
+    }
+
+    .conversation-center {
+        display:none;
+    }
+
+    .delete-conversation-button {
+        position: static
+    }
+
+    .delete-conversation-button-small {
+        display: none
+    }
+
+    .conversation-above {
+        display: none;
+    }
+
+    #open-conversations-button,
+    #open-message-box {
+        width: auto;
+    }
+
+    .delete-conversation-button{
+        display:inline;
+       
+    }
+
+  
+}
+
+
+@media screen and (min-width:1200px){
+    .conversations-bar {
+        width:25%;
+        display: block;
+    }
+
+    .messages-screen {
+        width: 75%;
+    }
+
+    .send-message-box {
+        width: 75%;
+        margin-left: auto;
+    }
+
+    .delete-conversation-button {
+        position: static
+    }
+
+    .delete-conversation-button-small {
+        display: none
+    }
+
+    .conversation-above {
+        display: none;
+    }
+
+    #open-conversations-button,
+    #open-message-box {
+        width: auto;
+    }
+}
+

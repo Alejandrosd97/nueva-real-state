@@ -1,0 +1,154 @@
+{% extends 'main.html' %} {% load static %} {% block estilo %}
+
+<link rel="stylesheet" href="{% static 'home.css' %}" />
+
+{% endblock estilo %}
+
+<!-- HERO SECTION -->
+
+{% block content %}
+ 
+<section>
+  <div class="hero">
+    <div class="main-hero">
+      <h1 class="main-title">Check the best opportunities in your city</h1>
+      <form method="get" action='{% url "home_page" %}'>
+        {% csrf_token %}
+
+        <div class="search-bar">
+          <div class="autocomplete-container" id="autocomplete-container"></div>
+          <input type="hidden"  name="city-searched" id="hidden-city"></input>
+
+          <div class="buttons">
+            <label for="buy">Buy</label>
+            <input name="rent-or-buy" type="radio" id="buy" value="buy" checked />
+            <label for="rent">Rent</label>
+            <input name="rent-or-buy" type="radio" id="rent" value="rent" />
+            <button type="submit" class="search-button" id="send-button">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- BEST SECTION -->
+
+<section>
+  <div class="foto-container">
+    <h2 class="title-best">Check some of our properties!</h2>
+    
+      <ul class="property-types">
+        <li id="all-link" class="bold" >All</li>
+        <li id="commercial-link" >Commercial</li>
+        <li id="residential-link" >Residential</li>
+        <li id="apartments-link" >Apartments</li>
+        <li id="countryside-link">Countryside</li>
+      </ul>
+    
+  
+<!-- GRID -->
+
+
+  <div class="grid-best" id="all">
+        <div class="big">
+            <img class="foto-casa-grande" src="{% static 'imgs/commercials/commercial-2.jpg' %}" alt="casa grande">
+        </div>
+        <div class="small-1">
+            <img class="foto-pequeña" src="{% static 'imgs/apartments/apartments-1.jpg' %}" alt="casa2">
+        </div>
+        <div class="small-2">
+            <img class="foto-pequeña" src="{% static 'imgs/commercials/commercial-1.jpg' %}" alt="casa3">
+        </div>
+        <div class="small-3">
+            <img class="foto-pequeña" src="{% static 'imgs/apartments/apartment-6.jpg' %}" alt="casa4">
+        </div>
+        <div class="small-4">
+            <img class="foto-pequeña" src="{% static 'imgs/residentials/residential-7.jpg' %}" alt="casa5">
+        </div>
+    </div>
+    <div class="grid-best hidden" id="commercial">
+        <div class="big">
+            <img class="foto-casa-grande" src="{% static 'imgs/commercials/commercial-1.jpg' %}" alt="casa grande">
+        </div>
+        <div class="small-1">
+            <img class="foto-pequeña" src="{% static 'imgs/commercials/commercial-2.jpg' %}" alt="casa2">
+        </div>
+        <div class="small-2">
+            <img class="foto-pequeña" src="{% static 'imgs/commercials/commercial-3.jpg' %}" alt="casa3">
+        </div>
+        <div class="small-3">
+            <img class="foto-pequeña" src="{% static 'imgs/commercials/commercial-4.jpg' %}" alt="casa4">
+        </div>
+        <div class="small-4">
+            <img class="foto-pequeña" src="{% static 'imgs/commercials/commercial-6.jpg' %}" alt="casa5">
+        </div>
+    </div>
+    <div class="grid-best hidden" id="residential">
+        <div class="big">
+            <img class="foto-casa-grande" src="{% static 'imgs/residentials/casa1.jpg' %}" alt="casa grande">
+        </div>
+        <div class="small-1">
+            <img class="foto-pequeña" src="{% static 'imgs/residentials/residential-1.jpg' %}" alt="casa2">
+        </div>
+        <div class="small-2">
+            <img class="foto-pequeña" src="{% static 'imgs/residentials/residential-2.jpg' %}" alt="casa3">
+        </div>
+        <div class="small-3">
+            <img class="foto-pequeña" src="{% static 'imgs/residentials/residential-4.jpg' %}" alt="casa4">
+        </div>
+        <div class="small-4">
+            <img class="foto-pequeña" src="{% static 'imgs/residentials/casa5.jpg' %}" alt="casa5">
+        </div>
+    </div>
+    <div class="grid-best hidden" id="apartments">
+        <div class="big">
+            <img class="foto-casa-grande" src="{% static 'imgs/apartments/apartments-2.jpg' %}" alt="casa grande">
+        </div>
+        <div class="small-1">
+            <img class="foto-pequeña" src="{% static 'imgs/apartments/apartments-1.jpg' %}" alt="casa2">
+        </div>
+        <div class="small-2">
+            <img class="foto-pequeña" src="{% static 'imgs/apartments/apartments-3.jpeg' %}" alt="casa3">
+        </div>
+        <div class="small-3">
+            <img class="foto-pequeña" src="{% static 'imgs/apartments/apartments-5.jpeg' %}" alt="casa4">
+        </div>
+        <div class="small-4">
+            <img class="foto-pequeña" src="{% static 'imgs/apartments/apartments-4.jpg' %}" alt="casa5">
+        </div>
+    </div>
+    <div class="grid-best hidden" id="countryside">
+        <div class="big">
+            <img class="foto-casa-grande" src="{% static 'imgs/countryside/countryside-1.jpg' %}" alt="casa grande">
+        </div>
+        <div class="small-1">
+            <img class="foto-pequeña" src="{% static 'imgs/countryside/countryside-2.jpg' %}" alt="casa2">
+        </div>
+        <div class="small-2">
+            <img class="foto-pequeña" src="{% static 'imgs/countryside/countryside-3.jpg' %}" alt="casa3">
+        </div>
+        <div class="small-3">
+            <img class="foto-pequeña" src="{% static 'imgs/countryside/countryside-1.jpg' %}" alt="casa4">
+        </div>
+        <div class="small-4">
+            <img class="foto-pequeña" src="{% static 'imgs/countryside/countryside-2.jpg' %}" alt="casa5">
+        </div>
+    </div>
+
+
+
+
+
+</section>
+
+
+
+
+
+<script type="text/javascript" src="{% static 'home.js' %}"></script>
+<script type="text/javascript" src="{% static 'autocomplete_home.js' %}"></script>
+
+{% endblock content %}

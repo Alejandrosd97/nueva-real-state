@@ -1,0 +1,69 @@
+{% extends 'main.html' %} {% load static %} {% block estilo %}
+<link rel="stylesheet" href="{% static 'chat-principal.css' %}" />
+{% endblock estilo %} {% block content %}
+
+<div class="contenedor">
+  <h1>Your conversations</h1>
+  {% for conversation in conversations %}
+
+  <div class="conversation">
+    <a class="conversation-link" href="{% url 'chat_detail' conversation.id %}">
+      <div class="conversation-information">
+        <h3>{{ conversation.house }}</h3>
+        <small class="date">{{conversation.last_modified}}</small>
+        {%if user_watching.is_owner %}
+        <p>{{conversation.customer.user_author.first_name}}</p>
+        {% else %}
+        <p>{{conversation.owner.user_author.first_name}}</p>
+        {% endif %}
+      </div>
+    </a>
+    <button
+      type="button"
+      class="delete-button"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      data-conversation="{{ conversation.id }}"
+    >
+      Delete
+    </button>
+  </div>
+
+  {% endfor %}
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Delete conversation
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this conversation?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <a><button type="button" class="btn btn-danger">Delete</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

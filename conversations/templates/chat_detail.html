@@ -1,0 +1,130 @@
+{% extends 'main.html' %} {% load static %} {% block estilo %}
+
+<link rel="stylesheet" href="{% static 'chat-definitivo.css' %}" />
+
+{% endblock estilo %} {% block content %}
+
+<div class="chat-container">
+  <div class="conversations-bar" id="conversations-bar">
+    <div class="conversation selected">
+      <div class="first-line">
+        <h2>{{current_conversation.house.address}}</h2>
+        <button class="close-conversations-bar" id="close-conversations-bar">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <small>{{current_conversation.last_modified}}</small>
+      {%if user_watching.is_owner %}
+      <p>{{current_conversation.customer.user_author.first_name}}</p>
+      {% else %}
+      <p>{{current_conversation.owner.user_author.first_name}}</p>
+      {% endif %}
+      <button class="delete-conversation-button-small">Delete</button>
+    </div>
+
+    {% for conversation in conversations %}
+    <a href="{% url 'chat_detail' conversation.id %}">
+      <div class="conversation">
+        <h2>{{conversation.house}}</h2>
+        <small>{{conversation.last_modified}}</small>
+
+        {%if user_watching.is_owner %}
+        <p>{{conversation.customer.user_author.first_name}}</p>
+        {% else %}
+        <p>{{conversation.owner.user_author.first_name}}</p>
+        {% endif %}
+      </div>
+    </a>
+
+    {% endfor %}
+  </div>
+  <div class="messages-screen">
+    <div class="conversation-above">
+      <h2>{{current_conversation.house}}</h2>
+      {%if user_watching.is_owner %}
+      <small>{{current_conversation.customer.user_author.first_name}}</small>
+      {% else %}
+      <small>{{current_conversation.owner.user_author.first_name}}</small>
+      {% endif %}
+    </div>
+    <div class="message-btns">
+      <button id="open-conversations-button">Conversations</button>
+      <button class="delete-conversation-button">Delete</button>
+
+      <div class="conversation-center">
+        <h2>{{current_conversation.house}}</h2>
+        {%if user_watching.is_owner %}
+        <small>{{current_conversation.customer.user_author.first_name}}</small>
+        {% else %}
+        <small>{{current_conversation.owner.user_author.first_name}}</small>
+        {% endif %}
+      </div>
+      <button id="open-message-box">Send message</button>
+    </div>
+
+    {%for message in messages %}{%if message.message_author == user_watching %}
+
+    <div class="message-sent">
+      <p class="message-text">{{ message.message_body }}</p>
+    </div>
+
+    {% else %}
+    <div class="message-received">
+      <p class="message-text">{{ message.message_body }}</p>
+    </div>
+
+    {% endif %} {% endfor %}
+  </div>
+  <div class="send-message-box" id="send-message-box">
+    <form
+      method="post"
+      action="{% url 'send_message' current_conversation.id %}"
+    >
+      {% csrf_token %}
+
+      <textarea class="message form-control" name="message">
+Send message</textarea
+      >
+      <div class="send-modal-buttons">
+        <button class="send-message-button" type="submit">Send message</button>
+        <button type="button" class="cancel-button" id="hide-message-modal">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- {{ lista |json_script:"conversations" }} -->
+
+<script>
+  // const conversations = JSON.parse(document.getElementById('conversations').textContent);
+  // console.log(conversations)
+
+  const openConvButton = document.getElementById("open-conversations-button");
+  const conversationsBar = document.getElementById("conversations-bar");
+  const closeConvButton = document.getElementById("close-conversations-bar");
+
+  const messageBox = document.getElementById("send-message-box");
+  const openMessageButton = document.getElementById("open-message-box");
+  const closeMessageButton = document.getElementById("hide-message-modal");
+
+  openConvButton.addEventListener("click", () => {
+    conversationsBar.classList.add("conversations-bar-active");
+    closeConvButton.classList.add("close-conversations-bar-active");
+  });
+
+  closeConvButton.addEventListener("click", () => {
+    conversationsBar.classList.remove("conversations-bar-active");
+    closeConvButton.classList.remove("close-conversations-bar-active");
+  });
+
+  openMessageButton.addEventListener("click", () => {
+    messageBox.classList.add("message-box-active");
+  });
+
+  closeMessageButton.addEventListener("click", () => {
+    messageBox.classList.remove("message-box-active");
+  });
+</script>
+{% endblock content %}

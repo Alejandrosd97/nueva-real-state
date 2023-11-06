@@ -1,0 +1,87 @@
+{% extends 'main.html' %} {% load static %} {% block estilo %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'lista_casas.css' %}" />
+
+{% endblock estilo %} {% block content %}
+
+<div class="contenedor">
+  <div class="titulo">
+    <h1>Your properties</h1>
+    <a href="{% url 'selling_page' %}"
+      ><button class="add-property-button">Add property</button></a
+    >
+  </div>
+  <div class="resultados">
+    {% if properties.count == 0 %}
+    <h3 class="mt-5">You have not published any add!</h3>
+    {% else %} {% for house in properties %}
+
+    <div class="box">
+      <div class="box-foto">
+        {% if house.housepictures_set.first.file.url %}
+        <img
+          src="{{ house.housepictures_set.first.file.url }}"
+          alt="apartments-2"
+        />
+        {% else %}
+        <img src="{% static 'imgs/no_image.jpg' %}" alt="apartments-2" />
+        {% endif %}
+      </div>
+
+      <div class="house-features">
+        <div>
+          <h3>
+            <a href="{% url 'house_detail' house.id %}">{{house.address}}</a>
+          </h3>
+          <h5>${{house.price|floatformat:0}}</h5>
+        </div>
+
+        <div>
+          <div class="first-row">
+            <p class="row-item">
+              <i class="fa-solid fa-bed"></i>&nbsp Rooms: {{ house.rooms }}
+            </p>
+            <p class="row-item">
+              <i class="fa-solid fa-shower"></i>&nbsp Bathrroms:
+              {{house.bathrooms}}
+            </p>
+          </div>
+          <div class="second-row">
+            <p class="row-item">
+              <i class="fa-solid fa-warehouse"></i> {%if house.garage == True%}
+              Garage: Yes {% else %} Garage: No {% endif %}
+            </p>
+            <p class="row-item">
+              <i class="fa-solid fa-maximize"></i>&nbsp {{house.m2}} m
+              <sup>2</sup>
+            </p>
+          </div>
+
+          <div class="third-row">
+            <p class="row-item">
+              Availability: {%if house.rent_or_sell == 'buy'%} For sale {%else%}
+              For rent {% endif %}
+            </p>
+          </div>
+        </div>
+
+        <div class="box-btns">
+          <form class="buttons-form" action="{% url 'edit_add' house.id %}">
+            {% csrf_token %}
+
+            <button type="submit" class="edit-button">Edit add</button>
+          </form>
+
+          <form class="no-margin-form" action="{% url 'remove_add' house.id %}">
+            {% csrf_token %}
+
+            <button type="submit" class="remove-fav-button">Remove</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %} {% endif %}
+  </div>
+</div>
+
+{% endblock content %}

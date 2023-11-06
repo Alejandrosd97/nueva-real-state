@@ -1,0 +1,30 @@
+{% extends 'main.html' %} {% load static %} {% block estilo %}
+
+<link rel="stylesheet" href="{% static 'login-definitivo.css' %}" />
+
+{% endblock estilo %}{% load crispy_forms_tags %} {% block content %}
+
+<div class="container-login">
+  <form method="post" class="credentials">
+    {% csrf_token %}
+    <h1>LOGIN FORM</h1>
+    <div><label class="label">Email </label>{{ form.email }}</div>
+    <div>
+      <label class="label" for="passsword">Password</label>{{ form.password }}
+    </div>
+    <div class="form-buttons">
+      <button class="btn login-btn">Login</button>
+      <button type="reset" class="btn reset-btn">Reset</button>
+    </div>
+    <div class="register-div">
+      <span>Don't have an account?</span>
+      <a class="register-link " href="{% url 'register_page' %}">&nbsp Register </a>
+    </div>
+  </form class='mb-3'>
+
+  <div class="login-foto">
+    <img src="{% static 'imgs/casa_login.jpg' %}" alt="house image" />
+  </div>
+</div>
+
+{% endblock content %}

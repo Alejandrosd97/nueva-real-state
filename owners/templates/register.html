@@ -1,0 +1,50 @@
+{% extends 'main.html' %} {% load static %} {% block estilo %}
+<link rel="stylesheet" href="{% static 'register.css' %}" />
+
+{% endblock estilo %} {% block content %}
+
+<div class="container-register">
+  <div class="login-foto">
+    <img src="{% static 'imgs/casa_register.jpg' %}" alt="house image" />
+  </div>
+  <div class="credentials">
+    <h1>REGISTRATION FORM</h1>
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="input-first-row mb-3">
+        <div>
+          <label class="label" for="name">First Name</label>{{ form.first_name}}
+        </div>
+        <div><label for="last-name">Last Name</label>{{ form.last_name}}</div>
+      </div>
+      <div class="input-second-row mb-3">
+        <div>
+          <label for="email">Email</label>
+          {{ form.email }}
+        </div>
+        <div>
+          <label for="phone-number">Phone </label>
+          {{ form.phone_number}}
+        </div>
+      </div>
+      <div class="input-third-row mb-3">
+        <div><label for="password">Password</label>{{ form.password1 }}</div>
+        <div class="mt-3">
+          <label>Confirm your Password</label>{{ form.password2}}
+        </div>
+      </div>
+      <div class="form-buttons mb-3">
+        <button class="btn register-btn" type="submit">Register</button>
+
+        <button type="reset" class="btn delete-btn">Reset</button>
+      </div>
+      <div class="login-div">
+        <span>Already have an account? </span>
+        <a class="login-link" href="{% url 'login_page' %}">&nbsp Log in</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}

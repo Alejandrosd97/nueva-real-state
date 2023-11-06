@@ -1,0 +1,245 @@
+{% extends 'main.html' %}{% load static %} {% block estilo %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'prueba-detail.css' %}"
+/>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+     crossorigin=""/>
+{% endblock estilo %} {% block content %}
+
+  <!-- MESSAGE MODAL -->
+
+  <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Send a message to the owner</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form
+      
+      method="post"
+      action="{% url 'contact_form' house.id %}"
+    >
+      {% csrf_token %}
+      <div class="price">
+      <textarea name="message" class="form-control"></textarea>
+      </div>
+      <div class="modal-buttons">
+      </div>
+    
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Send</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+  <!-- SET PRICE MODAL -->
+
+
+  <div class="modal fade" id="priceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Set your price</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form
+      class="set-price-form"
+      method="post"
+      action="{% url 'lower_price' house.id %}"
+    >
+      {% csrf_token %}
+      <p class="modal-description">
+        Set a price threshold according to your budget for this property
+        and we will let you know if the price drops!
+      </p>
+      <div class="price">
+      <span style="font-size: 20px;">$</span><input class="form-control" type="number" name="lower-price" />
+      </div>
+      <div class="modal-buttons">
+        <button class="btn btn-primary" type="submit">Send</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </form>
+    </div> 
+  </div>
+</div>
+
+
+ 
+
+
+<!-- PAGINA PRINCIPAL -->
+
+<div class="contenedor">
+  
+  <div class="first-row">
+    <div class="my-carousel" data-carousel>
+
+      
+      {% if first_image != None %}
+        
+        <button class="carousel-button previous" data-carousel-button="previous">&larr;</button>
+        <button class="carousel-button next" data-carousel-button="next">&rarr;</button>
+      {% endif %}
+      
+      <ul data-slides>
+
+      {% if first_image != None %}
+          
+        <li class="slide" data-active><img  src="{{ first_image.file.url }}" alt="" ></li>
+
+      {% else %}
+
+        <li class="slide" data-active><img  src="{% static 'imgs/no_image.jpg' %}" alt="" ></li>
+
+
+        {% endif %}
+          
+
+        
+        {% for image in other_images %}
+          <li class="slide"><img src="{{ image.file.url }}" id="" alt=""></li>
+
+        {% endfor %}
+          
+      </ul>
+
+    </div>
+
+
+
+
+
+    
+    <div class="description-big">
+      <h1 class='titulo-principal'>{{ house.address }}</h1>
+      <h2>$180000</h2>
+      <!-- <h3>Description:</h3> -->
+      <p class="mt-4 mb-0">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ratione
+        repudiandae laboriosam soluta voluptatibus laudantium itaque
+        perspiciatis eaque sunt quibusdam, dolor inventore sequi odio
+        consequatur culpa nisi maxime quia iste.
+      </p>
+    </div>
+  </div>
+
+
+
+
+
+
+  <div class="second-row">
+    <div class="features-container">
+      <h3 class="mb-3">Features:</h3>
+      <div class="features ">
+        <div class="item-row">
+          <div class="item"> <i class="fa-solid fa-maximize"></i>&nbsp Size: {{ house.m2 }}m<sup>2</sup> </div>
+          <div class="item"><i class="fa-solid fa-shower"></i>&nbsp Bathrooms: {{ house.bathrooms }}  </i></div>
+        </div>
+        <div class="item-row">
+          <div class="item"> <i class="fa-solid fa-bed"></i>&nbsp Rooms: {{house.rooms}}</div>
+          <div class="item"><i class="fa-solid fa-warehouse"></i>&nbsp Garage: 
+            {% if house.garage %}
+              Yes
+            {% else %}
+            No 
+            {% endif %}
+           </div>
+        </div>
+        <div class="item-row">
+          <div class="item"> <i class="fa-solid fa-house"></i>&nbsp  {{house.type}}</div>
+          <div class="item"> <i class="fa-solid fa-user"></i>&nbsp Owner: {{house.owner.first_name}}</div>
+        </div>
+        <div class="item-row">
+          <div class="item"><i class="fa-solid fa-house-circle-check"></i></i>&nbsp 
+          {% if house.rent_or_sell == 'buy' %}
+            For sale
+          {% else %}
+            For rent
+          {% endif %}
+              </div>
+          <div class="item"> <i class="fa-solid fa-calendar-days"></i>&nbsp {{house.last_modified|date:"M d, Y"}}</div>
+        </div>
+      </div>
+      <div class="buttons">
+        {% if is_liked %}
+          <a href="{% url 'dislike_page' house.id %}" class="add-favs-btn">Remove from favourites</a>
+        {% else %}
+          <a href="{% url 'like_page' house.id %}" class="add-favs-btn">Add to favourites</a>
+        {% endif %}
+
+<button type="button" class="price-drop-modal" data-bs-toggle="modal" data-bs-target="#priceModal">
+  Notice if the price drops
+</button>        
+        {% if message_sent %}
+        <a class="contact-owner-link" href="{% url 'chat_page' %}">Message sent to the owner. Check it!</a>
+ 
+        {% else %}
+<button class="contact-owner-btn" data-bs-toggle="modal" data-bs-target="#messageModal">
+  Contact to the owner
+</button>
+        {% endif %}
+          
+
+      </div>
+    </div>
+
+    <div class="map-container ">
+      <h3 class="mb-3 location-title">Location:</h3>
+      <div id="map"></div>
+    </div>
+  </div>
+</div>
+
+
+{{ house.longitude|json_script:'house_long' }}
+{{ house.latitude|json_script:'house_lat' }}
+{{ house.city.longitude|json_script:'city_long' }}
+{{ house.city.latitude|json_script:'city_lat' }}
+
+
+
+  
+
+
+<script src="{% static 'house_detail.js' %}"></script>
+
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+     crossorigin=""></script>
+
+
+
+    <script>
+
+    const cityLat = JSON.parse(document.getElementById('city_lat').textContent);
+    const cityLong = JSON.parse(document.getElementById('city_long').textContent);
+    const houseLat = JSON.parse(document.getElementById('house_lat').textContent);
+    const houseLong = JSON.parse(document.getElementById('city_long').textContent);
+
+// MAP /////////////////////////////////////////////////
+
+var map = L.map('map').setView([houseLat, houseLong], 15);
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+var marker = L.marker([houseLat, houseLong]).addTo(map);
+
+
+
+    </script>
+
+{% endblock content %}

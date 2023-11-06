@@ -1,0 +1,38 @@
+{%extends 'main.html'%} {%load static%} {%block estilo%}
+<link rel="stylesheet" type="text/css" href="{% static 'update_add.css' %}" />
+
+{%endblock estilo%} {%block content%}
+<div class="update-add-box">
+  <h2>House details</h2>
+  <form method="POST" class="update-form">
+    {% csrf_token %}
+    <div class="my-row">
+      <div class="update-item"><label for="">Price</label>{{ form.price}}</div>
+      <div class="update-item"><label for="">Rooms</label>{{ form.rooms}}</div>
+      <div class="update-item">
+        <label for="">Bathrooms</label>{{ form.bathrooms}}
+      </div>
+    </div>
+
+    <div class="my-row">
+      <div class="update-item">
+        <label for="">M<sup>2</sup></label
+        >{{ form.m2}}
+      </div>
+      <div class="update-item garage">
+        <label for="">garage </label>{{ form.garage}}
+      </div>
+      <div class="update-item">
+        <label for="">Availability</label> {{ form.rent_or_sell}}
+      </div>
+    </div>
+
+    <div class="my-row">{{ form.description }}</div>
+
+    <div class="my-row">
+      <button class="update-button" type="submit">Save changes</button>
+    </div>
+  </form>
+</div>
+
+{%endblock content%}

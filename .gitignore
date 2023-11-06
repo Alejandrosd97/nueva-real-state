@@ -1,0 +1,7 @@
+.env
+mydatabase.db
+/env
+venv
+/__pycache__
+mydatabase.db
+db.sqlite3

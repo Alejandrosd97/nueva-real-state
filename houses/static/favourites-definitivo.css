@@ -1,0 +1,90 @@
+.foto img {
+    height: 100%;
+    width: auto;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.descripcion-casa {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.descripcion-casa p {
+    padding: 5px 0px;
+    font-size: 15px;
+}
+
+.resultados {
+    flex: 4
+}
+
+
+
+
+
+/* NUEVO */
+
+.contenedor {
+    margin: auto;
+    width: 800px;
+}
+
+
+.contenedor h1 {
+    text-align: center;
+}
+
+.resultados {
+    margin: auto;
+    width: 100%;
+}
+
+.box {
+    display: flex;
+    width: 100%;
+    margin: auto;
+    height: 300px;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.box-foto img {
+    height: 100%;
+    width: 400px;
+    object-fit: cover;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.box h3,
+.box h5 {
+    margin: 0.2em 0px;
+}
+
+.house-text {
+    padding: 10px 15px
+}
+
+.house-features h3 {
+    margin-top: 0px;
+}
+
+.first-row,
+.second-row,
+.third-row {
+    display: flex;
+}
+
+.row-item {
+    width: 50%;
+}
+
+.titulo {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 0px
+}

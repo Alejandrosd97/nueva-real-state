@@ -1,0 +1,90 @@
+{% extends 'main.html' %} {% load static %} {% block estilo %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'lista_casas.css' %}" />
+
+{% endblock estilo %} {% block content %}
+
+<div class="contenedor">
+  {% if favourites|length == 0 %}
+  <h1 class="favourites-title">You have no favourites yet!</h1>
+  <div>
+    <a class="no-favs-btn" href="{% url 'home_page' %}">Search in your city</a>
+  </div>
+  {% else %}
+  <h1 class="favourites-title">Showing your favourites</h1>
+
+  {% endif %}
+
+  <div class="resultados">
+    {% for house in favourites %}
+
+    <div class="box">
+      <div class="box-foto">
+        {% if house.housepictures_set.first.file.url %}
+        <img
+          src="{{ house.housepictures_set.first.file.url }}"
+          alt="apartments-2"
+        />
+        {% else %}
+        <img src="{% static 'imgs/no_image.jpg' %}" alt="apartments-2" />
+        {% endif %}
+      </div>
+
+      <div class="house-features">
+        <div>
+          <h3>
+            <a href="{% url 'house_detail' house.id %}">{{ house.address }}</a>
+          </h3>
+          <h5>{{house.price|floatformat:0}}$</h5>
+        </div>
+
+        <div>
+          <div class="first-row">
+            <p class="row-item">
+              <i class="fa-solid fa-bed"></i>&nbsp Rooms: {{ house.rooms }}
+            </p>
+            <p class="row-item">
+              <i class="fa-solid fa-shower"></i>&nbsp Bathrooms:
+              {{house.bathrooms}}
+            </p>
+          </div>
+          <div class="second-row">
+            <p class="row-item">
+              <i class="fa-solid fa-warehouse"></i>{% if house.garage == True %}
+              Yes {% else %} No {% endif %}
+            </p>
+            <p class="row-item">
+              <i class="fa-solid fa-maximize"></i>&nbsp {{house.m2}} m<sup
+                >2</sup
+              >
+            </p>
+          </div>
+
+          <div class="third-row">
+            <p class="row-item">Available to {{house.rent_or_sell}}</p>
+          </div>
+        </div>
+
+        <div class="box-btns">
+          <a class="see-details-btn" href="{% url 'house_detail' house.id %}"
+            >See details</a
+          >
+
+          <form
+            class="no-margin-form"
+            action="{% url 'dislike_page' house.id %}"
+          >
+            {% csrf_token %}
+
+            <button type="submit" class="remove-fav-button">
+              Remove from favourites
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock content %}

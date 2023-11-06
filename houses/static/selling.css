@@ -1,0 +1,190 @@
+
+
+.selling-box {
+    width:90%;
+    max-width: 700px;
+    margin: auto;
+    padding: 16px;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.selling-box h2{
+    margin:0px;
+}
+
+.my-row{
+    display:flex;
+    gap:10px;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.selling-item{
+    width: 50%;
+    display: flex;
+    flex-direction:column;
+}
+
+
+input[type='number'], input[type='text'], select{
+    width:100%;
+    margin-top:5px;
+}
+
+.description-row, textarea{
+    width: 100%;
+}
+
+textarea{
+    margin-top:5px;
+    height:160px;
+    margin-bottom:10px;
+}
+
+
+.description-row{
+    display: flex;
+    margin-top: 10px;
+    flex-direction: column;
+}
+
+.sell-house-button{
+    width:100%;
+    background-color : var(--prussian-blue);
+    color: white;
+    transition:0.5s;
+    border:2px solid var(--prussian-blue)
+}
+
+.sell-house-button:hover{
+    background-color: white;
+    color:var(--prussian-blue);
+    transition: 0.5s;
+}
+
+.selling-form{
+    margin:0px;
+}
+
+input[type='file']{
+    display:inline-block;
+    margin-top:5px
+}
+
+@media screen and (max-width:768px) {
+    .my-row{
+        flex-direction: column;
+    }
+
+    .selling-item{
+        width: 100%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* AUTOCOMPLETE CSS */
+
+.autocomplete-container {
+    /*the container must be positioned relative:*/
+    position: relative;
+    width: 100%;
+    padding-left:0px;
+    margin-top:5px;
+}
+
+.autocomplete-container input {
+    width: 100%;
+    border:none;
+    height:20px;
+    outline: none;
+    padding: 5px;
+    padding-right: 31px;
+    font-size: 16px;
+}
+
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.1);
+    border-top: none;
+    z-index: 99;
+    /*position the autocomplete items to be the same width as the container:*/
+    top: calc(100% + 2px);
+    left: 0;
+    right: 0;
+
+    background-color: #fff;
+}
+
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.autocomplete-items div:hover {
+    /*when hovering an item:*/
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.autocomplete-items .autocomplete-active {
+    /*when navigating through the items using the arrow keys:*/
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.clear-button {
+    color: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+
+    position: absolute;
+    right: 5px;
+    top: 0;
+
+    height: 100%;
+    display: none;
+    align-items: center;
+}
+
+.clear-button.visible {
+    display: flex;
+}
+
+.clear-button:hover {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.autocomplete-container {
+    /*the container must be positioned relative:*/
+    position: relative;
+}
+
+.autocomplete-container input {
+    width: 100%;
+    padding: 10px;
+    padding-right: 31px;
+    font-size: 16px;
+}
+
+
+.hidden {
+    display: none;
+}
+
+.property-types li {
+    cursor: pointer;
+}
+
+
+

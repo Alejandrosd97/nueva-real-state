@@ -70,10 +70,7 @@
             >See details</a
           >
 
-          <form
-            class="no-margin-form"
-            action="{% url 'dislike_page' house.id %}"
-          >
+          <form class="mb-0" action="{% url 'dislike_page' house.id %}">
             {% csrf_token %}
 
             <button type="submit" class="remove-fav-button">

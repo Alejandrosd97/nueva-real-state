@@ -32,10 +32,8 @@
     <nav>
       <div class="my-navbar">
         <div class="real-state">
-          <i class="fa-solid fa-house house-icon"></i>
-          <a class="main-logo" href="{% url 'home_page' %}"
-            ><span class="real-state-blue">MyReal</span>State</a
-          >
+          <!-- <i class="fa-solid fa-house house-icon"></i> -->
+          <a class="main-logo" href="{% url 'home_page' %}">MyRealState</a>
         </div>
         <ul class="navbar-ul" id="navbar-items">
           {% if request.user.is_authenticated %}

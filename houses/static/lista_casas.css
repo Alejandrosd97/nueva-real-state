@@ -158,7 +158,7 @@
 }
 
 .filter-row{
-    gap:10px
+    gap:15px
 }
 
 .filter-row input, select{
@@ -167,11 +167,7 @@
     margin-top:3px;
 }
 
-.modal-active {
-    top: 120px;
-    left: 0px;
-    transition: 1s ease
-}
+
 
 .filter-form{
     width: 100%;
@@ -218,6 +214,11 @@
     justify-content: center;
 }
 
+.mobile-row{
+    display:flex;
+    gap:15px
+}
+
 .no-favs-btn{
     background-color:var(--prussian-blue);
     padding:8px 16px;
@@ -225,12 +226,14 @@
     margin-top:20px;
     color:white;
     border: 2px solid var(--prussian-blue);
+    transition:0.5s
 }
 
 .no-favs-btn:hover{
     color: var(--prussian-blue);
     background-color: white;
-    border:2px solid var(--prussian-blue)
+    border:2px solid var(--prussian-blue);
+    transition:0.5s
 }
 
 .see-details-btn{
@@ -334,13 +337,13 @@
     overflow: hidden;
     transition:0.5s;
     position: relative;
-    padding: 0px 10px;
+    padding: 0px 15px;
 }
 
 .activo{
     height: 140px;
     transition:0.5s;
-    padding: 10px 10px;
+    padding: 10px 15px;
 }
 
 .cerrar-filtro{
@@ -352,7 +355,15 @@
 
 .filter-input{
     display: flex;
+    width: 25%;
     flex-direction: column;
+}
+
+.filter-input input{
+    border: none;
+    outline:none;
+    border-radius: 2px;
+    height: 30px;
 }
 
 .radio{
@@ -380,8 +391,8 @@
 .inputs-row{
     display: flex;
     margin-bottom:20px;
-    justify-content: space-between;
     align-items: center;
+    gap:15px
 }
 
 .clear-btn{
@@ -399,4 +410,27 @@
 
 .buttons-form{
     margin:0px;
+}
+
+
+@media screen and (max-width:740px){
+    .inputs-row{
+        flex-direction: column;
+    }
+
+    .filter-input{
+        width: 100%;
+    }
+
+    .filter-input input{
+        width: 100%;
+    }
+
+    .activo{
+        height: 320px;
+    }
+
+    .input-radio{
+        width: auto;
+    }
 }

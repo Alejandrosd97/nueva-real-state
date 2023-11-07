@@ -49,7 +49,9 @@
     </div>
     <div class="message-btns">
       <button id="open-conversations-button">Conversations</button>
-      <button class="delete-conversation-button">Delete</button>
+      <a href="{% url 'delete_conversation' current_conversation.id %}">
+        <button class="delete-conversation-button">Delete</button>
+      </a>
 
       <div class="conversation-center">
         <h2>{{current_conversation.house}}</h2>

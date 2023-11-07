@@ -51,23 +51,6 @@ def chat_detail(request, conv_id):
 
 
 
-# def other_conversations(request, id):
-#     user_watching = ChatMessageAuthor.objects.filter(user_author = request.user).first()
-#     if user_watching.is_owner:
-#         conversations = ChatConversation.objects.filter(owner=user_watching).order_by('-last_modified').all()
-        
-#     else: 
-#         conversations = ChatConversation.objects.filter(customer=user_watching).order_by('-last_modified').all()
-    
-#     current_conversation = ChatConversation.objects.filter(id= id).first()
-    
-
-#     messages = current_conversation.chatmessage_set.all().order_by
-
-
-#     return render(request, 'other_conversations.html', {'conversations':conversations,
-#     'current_conversation': current_conversation, 'messages': messages, 'author_message': user_watching}) 
-
 
 @login_required
 def delete_conversation(request, conv_id):

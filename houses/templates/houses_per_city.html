@@ -6,100 +6,63 @@
 
 <!--  MODAL FILTROS -->
 
-
 <!-- LOS RESULTADOS -->
 
 <div class="contenedor">
   <div class="titulo">
-    <h1>Showing results of <span style="text-transform: capitalize;">{{city_name}}</span></h1>
+    <h1>
+      Showing results of
+      <span style="text-transform: capitalize">{{city_name}}</span>
+    </h1>
     <button class="filter-btn" id="toggleFilter">Filter</button>
-  
-    
-
-
-
-    <!-- MODAL  NUEVO -->
-
-      <div class="filter-modal" id="filter-modal">
-        <button class="close-filter-button" id="close-filter-button"><i class="fa-solid fa-xmark"></i></button></i>
-        
-      </div>
   </div>
 
+  <!-- MODAL  NUEVO -->
   <div id="nuevo-filtro-id" class="nuevo-filtro">
     <form
-          class="filter-form"
-          action="{% url 'houses_per_city' id rent_or_buy %}"
-        >
-
+      class="filter-form"
+      action="{% url 'houses_per_city' id rent_or_buy %}"
+    >
       <div class="inputs-row">
         <div class="filter-input">
           <label for="price">Max price</label>
-          <input name="max_price" type="number" id="price">
+          <input name="max_price" type="number" id="price" />
         </div>
 
-         <div class="filter-input">
+        <div class="filter-input">
           <label for="rooms">Rooms</label>
-          <input name="rooms" type="number" id="rooms">
+          <input name="rooms" type="number" id="rooms" />
         </div>
 
         <div class="filter-input">
           <label for="Min-m2">Min m2</label>
-          <input name="min_m2" type="number" id="number">
+          <input name="min_m2" type="number" id="number" />
         </div>
 
         <div class="filter-input radio">
-            <label for="buy">Buy</label>
-            <input type="radio" name="availability" value="buy" id="buy" />
-            <label for="rent">Rent</label>
-            <input type="radio" name="availability" value="rent" id="rent" />
+          <label for="buy">Buy</label>
+          <input
+            style="width: auto"
+            type="radio"
+            name="availability"
+            value="buy"
+            id="buy"
+          />
+          <label for="rent">Rent</label>
+          <input
+            style="width: auto"
+            type="radio"
+            name="availability"
+            value="rent"
+            id="rent"
+          />
         </div>
       </div>
       <div class="filter-btns-row">
         <button class="apply-filter-btn" type="submit">Filter</button>
         <button class="clear-btn" type="clear">Clear</button>
       </div>
-          
-          
-<!--             
-              <label for="max-price">Max price</label>
-              <input type="number" class="form-control" name="max_price" id="max-price" />
-           
-
-            <div class="item">
-              <label for="max-price">Type</label>
-              <select name="type" class="form-control" id="type">
-                <option value="residential">All</option>
-                <option value="residential">Residential</option>
-                <option value="residential">Countryside</option>
-                <option value="residential">Commercial</option>
-                <option value="residential">Aparmtents</option>
-              </select>
-            </div>
-          </div>
-          
-            <div class="item">
-              <label for="min-m2">Min m<sup>2</sup></label>
-              <input type="number" class="form-control" name="min_m2" id="min-m2" />
-            </div>
-
-            <div class="item">
-              <label for="min-rooms">Min rooms</label>
-              <input type="number" class="form-control" name="min_rooms" id="min-rooms" />
-            </div>
-          
-          <div>
-              <label for="buy">Buy</label>
-            <input type="radio" name="availability" value="buy" id="buy" />
-            <label for="rent">Rent</label>
-            <input type="radio" name="availability" value="rent" id="rent" />
-          </div>
-
-          <div class="filter-btns">
-            <button class="clear-filters-button" type="reset">Clear</button>
-            <button type="submit">Apply filters</button>
-          </div> -->
-        </form>
+    </form>
   </div>
   <!-- LISTA DE CASAS -->
 
@@ -107,9 +70,7 @@
 
   <p>There is no results for your search (Try Madrid)</p>
 
-  {% endif %}
-
-  {% for house in city_houses %}
+  {% endif %} {% for house in city_houses %}
 
   <div class="box">
     <div class="box-foto">
@@ -119,10 +80,7 @@
         alt="apartments-2"
       />
       {% else %}
-      <img
-        src="{% static 'imgs/no_image.jpg' %}"
-        alt="apartments-2"
-      />
+      <img src="{% static 'imgs/no_image.jpg' %}" alt="apartments-2" />
       {% endif %}
     </div>
 
@@ -150,7 +108,7 @@
             Yes {% else %} No {% endif %}
           </p>
           <p class="row-item">
-            <i class="fa-solid fa-maximize"></i>&nbsp{{house.m2}}m2
+            <i class="fa-solid fa-maximize"></i>&nbsp{{house.m2}}m <sup>2</sup>
           </p>
         </div>
 
@@ -164,35 +122,34 @@
 
       <div class="box-btns">
         {% if request.user.is_authenticated %}
-        <form
-          class="no-margin-form"
-          method="post"
-          action="{% url 'like_page' house.id %}"
-        > 
-          {% csrf_token %}
-          <button class="fav-button" type="submit">Add to favourites</button>
-        </form>
 
-        <button class="modal-price-button" id="open-price-modal-button">
-          Notice if the price drops
-        </button>
+        <a href="{% url 'like_page' house.id %}"
+          ><button class="fav-button" type="button">
+            Add to favourites
+          </button></a
+        >
+
+        <a href="{% url 'house_detail' house.id  %}"
+          ><button class="set-price-button">See details</button></a
+        >
 
         {% else %}
         <a href="{% url 'like_page' house.id %}"
           ><button class="fav-button" type="button">
-            Add to favourites nr
+            Add to favourites
           </button></a
         >
-        <button class="set-price-button" type="button">
-          Notice if the price drops nr
-        </button>
+        <a href="{% url 'lower_price' house.id %}"
+          ><button class="set-price-button" type="button">
+            Notice if the price drops
+          </button></a
+        >
+
         {% endif %}
       </div>
     </div>
   </div>
-  {% endfor %}
-
-  {{houses.has_previous}}
+  {% endfor %} {{houses.has_previous}}
 
   <div class="my-pagination mt-5">
     <ul class="pagination">
@@ -211,37 +168,24 @@
       </li>
     </ul>
   </div>
-
 </div>
 
 <script>
-  // const openFilterButton = document.getElementById("toggleFilter");
-  // const filterModal = document.getElementById("filter-modal");
-  // const closeFilterButton = document.getElementById('close-filter-button')
+  const openFilterButton = document.getElementById("toggleFilter");
+  const filterModal = document.getElementById("filter-modal");
 
-  // openFilterButton.addEventListener("click", () => {
-  //   filterModal.classList.add("modal-active");
-  // });
-
-  // closeFilterButton.addEventListener('click', ()=>{
-  //   filterModal.classList.remove('modal-active')
-  // })
-
-
-
+  openFilterButton.addEventListener("click", () => {
+    filterModal.classList.add("modal-active");
+  });
 
   const openNuevoFiltro = document.getElementById("toggleFilter");
-  const cerrarFiltro = document.getElementById('cerrar-filtro-id')
+  const cerrarFiltro = document.getElementById("cerrar-filtro-id");
 
-  const nuevoFiltro = document.getElementById('nuevo-filtro-id')
-    
+  const nuevoFiltro = document.getElementById("nuevo-filtro-id");
+
   openNuevoFiltro.addEventListener("click", () => {
     nuevoFiltro.classList.toggle("activo");
   });
-
-  
-
-
 </script>
 
 {% endblock content %}

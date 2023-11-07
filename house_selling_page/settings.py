@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -88,7 +88,6 @@ WSGI_APPLICATION = 'house_selling_page.wsgi.application'
 import dj_database_url
 
 DATABASES = {
-    'ENGINE' : "django.db.backends.postgresql",
     'default': {
         'default': dj_database_url.config(
         # Feel free to alter this value to suit your needs.
@@ -164,8 +163,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MEDIA_URL = '/media/'
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -175,7 +174,7 @@ import cloudinary.uploader
 import cloudinary.api
 
 cloudinary.config(  
-  cloud_name = config('CLOUD_NAME'),
-  api_key = config('API_KEY'),
-  api_secret = config('API_SECRET_KEY') 
+  cloud_name = os.environ.get('CLOUD_NAME'),
+  api_key = os.environ.get('API_KEY'),
+  api_secret = os.environ.get('API_SECRET_KEY') 
 )

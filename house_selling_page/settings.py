@@ -88,6 +88,7 @@ WSGI_APPLICATION = 'house_selling_page.wsgi.application'
 import dj_database_url
 
 DATABASES = {
+    'ENGINE' : "django.db.backends.postgresql",
     'default': {
         'default': dj_database_url.config(
         # Feel free to alter this value to suit your needs.
